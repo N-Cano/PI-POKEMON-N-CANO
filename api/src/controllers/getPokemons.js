@@ -26,7 +26,7 @@ const getPokemonDetails = async (url) => { // Función para obtener los detalles
 }
 
 
-const getPokemons = async () => { // Función para obtener los pokemones
+const getPokemons = async (req, res) => { // Función para obtener los pokemones
     const { name } = req.query;
 
     try {
