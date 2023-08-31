@@ -1,16 +1,25 @@
-import Home from "./views/Home/Home";
-import Create from "./views/Create/Create";
-import Landing from "./views/Landing/Landing";
-import Detail from "./views/Detail/Detail";
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
+
+import { Home, Landing, Detail, Create } from "./views";
+import NavBar from './components/NavBar/NavBar';
+
+import './App.css';
+
 function App() {
+
+  const location = useLocation();
+
   return (
-    <div className="App">
+    <main className="App">
+
+      {location.pathname !== '/' && <NavBar />}
+
       <Route exact path='/' component={Landing} />
       <Route exact path='/home' component={Home} />
       <Route exact path='/detail/:id' component={Detail} />
       <Route exact path='/create' component={Create} />
-    </div>
+
+    </main>
   );
 }
 

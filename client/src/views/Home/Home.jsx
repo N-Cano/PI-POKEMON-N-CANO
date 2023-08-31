@@ -1,7 +1,12 @@
+import Cards from "../../components/Cards/Cards"
+import logoImage from '../../assets/logo-pokedex.svg'
+import style from './Home.module.css'
+
 const Home = () => {
     return (
         <div>
-            <h1>Esta es la vita de Home</h1>
+            <img className={style.logoImage} src={logoImage} alt="" />
+            <Cards />
         </div>
     )
 }

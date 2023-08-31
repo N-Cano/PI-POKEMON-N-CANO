@@ -1,0 +1,38 @@
+.landing {
+    background: url('https://images5.alphacoders.com/119/1190096.jpg')
+        no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 5rem;
+    color: #ccc;
+    margin-top: 2rem;
+}
+
+.btn {
+    margin-bottom: 5rem;
+    background: #ccc;
+    color: #555;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    width: 10rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.btn:hover {
+    background: #555;
+    color: #fff;
+    transform: scale(1.05);
+}
