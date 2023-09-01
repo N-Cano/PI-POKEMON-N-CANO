@@ -1,3 +1,7 @@
+.mainContainer{
+    height: 100%;
+}
+
 .logoImage {
     margin-top: 2rem;
 }
