@@ -27,7 +27,7 @@ const NavBar = () => {
             <div className={style.containerBtn}>
                 <Link className={style.home} to='/home'>HOME</Link>
                 <Link className={style.create} to='/create'>CREATE</Link>
-                <Link to='/'>SALIR</Link>
+                <Link className={style.out} to='/'>GO OUT</Link>
             </div>
             {location.pathname !== '/create' &&
                 <SearchBar className={style.searchBar} handleSearchSubmit={handleSearchSubmit} />}

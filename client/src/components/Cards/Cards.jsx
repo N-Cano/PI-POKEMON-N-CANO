@@ -1,12 +1,20 @@
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Card from "../Card/Card";
+import Pagination from '../Pagination/Pagination';
 
 import style from "./Cards.module.css";
 
 const Cards = () => {
 
     const poke = useSelector(state => state.pokemons)
+    const dispatch = useDispatch();
+    const filteredPokemons = useSelector(state => state.filteredPokemons);
+    const [page, setPage] = useState(1);
+    const [perPage, setPerPage] = useState(12);
+
+    const max = Math.ceil(filteredPokemons.length / perPage); // Calculamos el número máximo de páginas
 
     if (!Array.isArray(poke)) { // Si pokemons no es un array, significa que se recibió un único pokemon
         if (typeof poke === 'object' && Object.keys(poke).length > 0) {
@@ -24,6 +32,7 @@ const Cards = () => {
                             height={poke.height}
                             weight={poke.weight}
                             types={poke.types}
+                            setPage={setPage}
                         />
                     </div>
                 </div>
@@ -45,8 +54,15 @@ const Cards = () => {
                     height={pokemon.height}
                     weight={pokemon.weight}
                     types={pokemon.types}
+                    setPage={setPage}
                 />
             })}
+
+            {poke.length > 0 && (
+                <div className={style.paginationContainer}>
+                    <Pagination page={page} setPage={setPage} max={max} />
+                </div>
+            )}
         </main>
     )
 }
