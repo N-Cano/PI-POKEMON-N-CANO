@@ -9,8 +9,7 @@
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-end;
 }
 .container {
     background-color: #F1B2AC;
@@ -18,6 +17,9 @@
     padding: 1rem 2rem;
     margin-top: 1rem;
     text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container h3 {
@@ -27,14 +29,24 @@
     margin-bottom: 1rem;
 }
 
+.container p {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+
 .card img {
     max-height: 15rem;
-    height: 100%;
-    object-fit: cover;
+    width: 100%;
     border-radius: 10px 10px 0 0;
 }
 
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.link {
+    text-decoration: none;
 }

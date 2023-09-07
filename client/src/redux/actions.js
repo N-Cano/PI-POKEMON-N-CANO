@@ -70,7 +70,7 @@ export const filterType = (type) => { // Filtra los pokemons por tipo
     }
 }
 
-export const filterDBAPI = (vale) => { // Filtra los pokemons por origen (API o DB)
+export const filterDBAPI = (value) => { // Filtra los pokemons por origen (API o DB)
     return {
         type: FILTER_DBAPI,
         payload: value
