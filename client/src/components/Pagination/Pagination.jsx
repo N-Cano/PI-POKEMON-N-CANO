@@ -1,18 +1,18 @@
 import style from './Pagination.module.css';
 
 const Pagination = ({ page, setPage, max }) => {
-    const nextPage = () => {
+    const nextPage = () => { // Función para ir a la página siguiente
         setPage(page + 1);
     };
 
-    const previousPage = () => {
+    const previousPage = () => { // Función para ir a la página anterior
         setPage(page - 1);
     };
 
-    const pageNumbers = Array.from({ length: max }, (_, i) => i + 1);
+    const pageNumbers = Array.from({ length: max }, (_, i) => i + 1); // Genera un arreglo de números de página desde 1 hasta 'max'
 
-    const currentPage = style.currentPage
-    const paginationButton = style.paginationButton
+    const currentPage = style.currentPage  // Estilo para la página actual
+    const paginationButton = style.paginationButton // Estilo para los botones de paginación
 
     return (
         <div className={style.paginationContainer}>
