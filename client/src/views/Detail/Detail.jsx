@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getPokemonDetail } from '../../redux/actions';
 import style from './Detail.module.css';
-import NavBar from '../../components/NavBar/NavBar';
 
 const Detail = () => {
     const dispatch = useDispatch();
     const { pokemonsDetail } = useSelector((state) => state);
-    const { id } = useParams();
+    const { id } = useParams(); // Obtiene el ID del Pokémon de los parámetros de la URL
 
     useEffect(() => {
-        dispatch(getPokemonDetail(id))
-    }, [id, dispatch]);
+        dispatch(getPokemonDetail(id))// Cuando el componente se monta o cuando cambia el ID en la URL,
+    }, [id, dispatch]); // se dispara una acción para obtener los detalles del Pokémon con ese ID
 
-    function isEmptyObject(obj) {
+    function isEmptyObject(obj) { // Función para verificar si un objeto está vacío
         return Object.keys(obj).length === 0 && obj.constructor === Object;
     }
 
@@ -22,7 +21,7 @@ const Detail = () => {
         <div className={style.detailContainer}>
             <Link className={style.btnHome} to='/home'>HOME</Link>
             {(
-                !isEmptyObject(pokemonsDetail) ? (
+                !isEmptyObject(pokemonsDetail) ? ( // Si los detalles del Pokémon no están vacíos, se muestran
                     <div>
                         <div className={style.detailTitle}>{pokemonsDetail.name}</div>
                         <div className={style.detailContent}>
@@ -54,7 +53,7 @@ const Detail = () => {
                                     <p>TYPE:</p>
                                     {pokemonsDetail.types && (
                                         <div>
-                                            {pokemonsDetail.types.split(', ').map((type, index) => (
+                                            {pokemonsDetail.types.split(', ').map((type, index) => ( // Mapea y muestra los tipos del Pokémon
                                                 <p key={index}>{type}</p>
                                             ))}
                                         </div>
@@ -64,7 +63,7 @@ const Detail = () => {
                         </div>
                     </div>
                 ) : (
-                    <div>
+                    <div> // Si los detalles del Pokémon están vacíos (cargando), se muestra "Loading..."
                         <p>Loading...</p>
                     </div>
                 )
