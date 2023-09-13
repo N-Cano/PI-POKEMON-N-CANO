@@ -20,7 +20,7 @@ const Create = () => {
         type: [],
     });
 
-    const types = [
+    const types = [ // Definición de tipos de Pokémon
         { value: '', label: 'Select a type' },
         { value: 'normal', label: 'Normal' },
         { value: 'fire', label: 'Fire' },
@@ -57,7 +57,7 @@ const Create = () => {
     const [isSubmitClicked, setIsSubmitClicked] = useState(false);
     const [formValid, setFormValid] = useState(false);
 
-    const changeHandler = (event) => {
+    const changeHandler = (event) => { // Maneja los cambios en los campos del formulario
         const property = event.target.name;
         const value = event.target.value;
 
@@ -90,16 +90,17 @@ const Create = () => {
     };
 
 
-    const submitHandler = async (event) => {
+    const submitHandler = async (event) => { // Maneja el envío del formulario
         event.preventDefault();
         setIsSubmitClicked(true);
 
-        setErrors(validatePokemon(newPokemon, errors));
+        setErrors(validatePokemon(newPokemon, errors)); // Validación de errores en el formulario
 
         if (Object.values(errors).some((val) => val !== '')) {
             return;
         }
 
+        // Envía la solicitud para crear un nuevo Pokémon
         const { name, image, life, attack, defense, speed, height, weight, type } = newPokemon
         let pokemon = { name: name, image: image, life: life, attack: attack, defense: defense, type: type }
         if (speed.length) pokemon = { ...pokemon, speed: speed }
@@ -188,7 +189,7 @@ const Create = () => {
         ));
     };
 
-    useEffect(() => {
+    useEffect(() => { // Verifica si el formulario es válido en función de los errores
         const isValid = Object.values(errors).every((val) => val === '');
         setFormValid(isValid);
     }, [errors]);
@@ -222,7 +223,7 @@ const Create = () => {
                 <div>
                     <label>Attack</label>
                     <div>
-                        <input type="range" min="0" max="100" value={newPokemon.attack || '20'} onChange={changeHandler} name="attack" />
+                        <input type="range" min="0" max="250" value={newPokemon.attack || '20'} onChange={changeHandler} name="attack" />
                         <span className={style.rangeValue}>{newPokemon.attack}</span>
                     </div>
                     {errors.attack && <span className={style.errorMessage}>{errors.attack}</span>}
@@ -231,7 +232,7 @@ const Create = () => {
                 <div>
                     <label>Defense</label>
                     <div>
-                        <input type="range" min="0" max="100" value={newPokemon.defense || '20'} onChange={changeHandler} name="defense" />
+                        <input type="range" min="0" max="250" value={newPokemon.defense || '20'} onChange={changeHandler} name="defense" />
                         <span className={style.rangeValue}>{newPokemon.defense}</span>
                     </div>
                     {errors.defense && <span className={style.errorMessage}>{errors.defense}</span>}
@@ -240,7 +241,7 @@ const Create = () => {
                 <div>
                     <label>Speed</label>
                     <div>
-                        <input type="range" min="0" max="100" value={newPokemon.speed || '20'} onChange={changeHandler} name="speed" />
+                        <input type="range" min="0" max="250" value={newPokemon.speed || '20'} onChange={changeHandler} name="speed" />
                         <span className={style.rangeValue}>{newPokemon.speed}</span>
                     </div>
                     {errors.speed && <span className={style.errorMessage}>{errors.speed}</span>}
@@ -258,7 +259,7 @@ const Create = () => {
                 <div>
                     <label>Weight</label>
                     <div>
-                        <input type="range" min="0" max="100" value={newPokemon.weight || '20'} onChange={changeHandler} name="weight" />
+                        <input type="range" min="0" max="1000" value={newPokemon.weight || '20'} onChange={changeHandler} name="weight" />
                         <span className={style.rangeValue}>{newPokemon.weight}</span>
                     </div>
                     {errors.weight && <span className={style.errorMessage}>{errors.weight}</span>}

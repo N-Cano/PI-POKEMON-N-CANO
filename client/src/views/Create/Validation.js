@@ -37,11 +37,45 @@ export const validatePokemon = (newPokemon, errors) => {
     newErrors.defense = '';
   }
 
+  // Validar la velocidad del pokemon
+  if (!newPokemon.speed) {
+    newErrors.speed = 'Please choose a value';
+  } else if (newPokemon.speed < 1 || newPokemon.speed > 250) {
+    newErrors.speed = 'Speed must be between 1 and 250';
+  } else {
+    newErrors.speed = '';
+  }
+
+  // Validar la altura del pokemon
+  if (!newPokemon.height) {
+    newErrors.height = 'Please choose a value';
+  } else if (newPokemon.height < 1 || newPokemon.height > 100) {
+    newErrors.height = 'Height must be between 1 and 100';
+  } else {
+    newErrors.height = '';
+  }
+
+  // Validar el peso del pokemon
+  if (!newPokemon.weight) {
+    newErrors.weight = 'Please choose a value';
+  } else if (newPokemon.weight < 1 || newPokemon.weight > 1000) {
+    newErrors.weight = 'Weight must be between 1 and 1000';
+  } else {
+    newErrors.weight = '';
+  }
+
   // Validar el tipo del pokemon
   if (!newPokemon.type || newPokemon.type.length === 0) {
     newErrors.type = 'Please select at least one type';
   } else {
     newErrors.type = '';
+  }
+
+  // Validar la imagen del pokemon
+  if (!newPokemon.image) {
+    newErrors.image = 'Please choose an image';
+  } else {
+    newErrors.image = '';
   }
 
   return newErrors;
