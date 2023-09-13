@@ -11,32 +11,29 @@ import {
     GET_POKEMON_IMG,
 } from './action-types';
 
-const initialState = {
+const initialState = { // Estado inicial
     allPokemons: [],
     pokemons: [],
     types: "",
     filteredPokemons: [],
     pokemonsDetail: {},
     userPokemons: [],
-    loading: false,
     pokemonImages: [],
 };
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => { // Reducer que maneja las acciones y actualiza el estado
     switch (action.type) {
 
-        // inicializo distintos estados para despues no pisarme
-        case GET_POKEMONS:
+        // Inicializo distintos estados para despues no pisarme
+        case GET_POKEMONS: // Actualiza el estado con la lista completa de pokemons
             return {
                 ...state,
                 pokemons: action.payload,
                 filteredPokemons: action.payload,
                 allPokemons: action.payload,
-                loading: false,
             };
 
         case GET_ALL_POKEMONS:
-            // Nueva acción para obtener todos los pokemons sin filtrar
             // Actualiza el estado con todos los pokemons sin filtrar
             return {
                 ...state,
@@ -52,8 +49,9 @@ const rootReducer = (state = initialState, action) => {
             // Actualiza el estado con los detalles de un pokemon específico
             return { ...state, pokemonsDetail: action.payload };
 
-        //utilizo sort para comparar uno a uno por ataque. parseInt para hacerlos numeros
         case ORDER_BY_ATTACK:
+            // Ordena los pokemons por puntos de ataque (ascendente o descendente) usando la función 'sort'
+            // parseInt para convertir el string en un número
             const isAscendingAttack = action.payload === "asc";
             const sortedPokemonsAttack = [...state.filteredPokemons].sort((a, b) => {
                 const attackA = parseInt(a.attack);
@@ -72,8 +70,9 @@ const rootReducer = (state = initialState, action) => {
                 filteredPokemons: sortedPokemonsAttack,
             };
 
-        //utilizo sort para comparar uno a uno los nombres. toUpperCase para evitar errores 
         case ORDER_BY_NAME:
+            //Ordena los pokemons por puntos de ataque (ascendente o descendente) usando la función 'sort'
+            // toUpperCase para evitar errores
             const isAscendingName = action.payload === "asc";
             const sortedPokemonsName = [...state.filteredPokemons].sort((a, b) => {
                 const nameA = a.name.toUpperCase();
@@ -107,11 +106,12 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case GET_POKEMON_TYPE:
+            // Actualiza el estado con la lista de tipos de pokemons
             return { ...state, types: action.payload };
 
         case FILTER_DBAPI:
             // Filtra los pokemons según el origen de los datos (API o Base de Datos)
-            if (action.payload !== '') { // Cambio aquí: de 'all' a ''
+            if (action.payload !== '') { // Si el payload no es '', filtra los pokemons según el origen
                 const filteredDbApi = state.pokemons.filter((pokemon) => {
                     if (action.payload === 'API') {
                         // Filtra los pokemons obtenidos de la API (cuyo ID no es un número)
@@ -131,6 +131,7 @@ const rootReducer = (state = initialState, action) => {
 
 
         case GET_POKEMON_IMG:
+            // Actualiza el estado con las imágenes de los pokemons
             return {
                 ...state,
                 pokemonImages: action.payload,
