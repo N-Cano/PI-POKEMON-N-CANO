@@ -1,0 +1,123 @@
+.FilterSortButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 2rem;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.FilterSortButton h2, h3 {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.FilterSortButton h3 {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.containerInput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: #A29CBB;
+    border-radius: 2rem;
+    padding: 10px;
+    width: 100%;
+}
+
+.containerInput:focus {
+    border-radius: 0;
+}
+
+.btnType {
+    background: #ccc;
+    border: none;
+    padding: 10px;
+    border-radius: 2rem;
+    width: 100%;
+}
+
+.btnFilterSort {
+    background: #ccc;
+    color: #555;
+    border: none;
+    padding: 10px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btnFilterSort:hover {
+    background: #555;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.buttonAttack {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: .2rem;
+    border-radius: 2rem;
+    padding: 10px;
+}
+
+.buttonAttack button {
+    background: #ccc;
+    color: #555;
+    border: none;
+    padding: 10px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.buttonAttack button:hover {
+    background: #555;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.buttonOrder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: .2rem;
+    border-radius: 2rem;
+    padding: 10px;
+}
+
+.buttonOrder button{
+    background: #ccc;
+    color: #555;
+    width: 4rem;
+    border: none;
+    padding: 10px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.buttonOrder button:hover {
+    background: #555;
+    color: #fff;
+    transform: scale(1.05);
+}

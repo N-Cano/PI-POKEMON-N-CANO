@@ -1,4 +1,4 @@
-const API_POKE = "https://pokeapi.co/api/v2/pokemon?limit=50";
+const API_POKE = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 const API_POKE_TYPE = "https://pokeapi.co/api/v2/type";
 const API_POKE_NAME_OR_ID = "https://pokeapi.co/api/v2/pokemon/";
 

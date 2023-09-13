@@ -5,7 +5,7 @@ const Card = (props) => {
     return (
         <section className={style.card}>
             <div key={props.id}>
-                <Link to={`/pokemon/${props.id}`} className={style.link}>
+                <Link to={`/detail/${props.id}`} className={style.link}>
                     <img src={props.image} alt={props.name} />
                     <div className={style.container}>
                         <h3>{props.name}</h3>

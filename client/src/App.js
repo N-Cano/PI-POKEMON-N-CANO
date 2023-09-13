@@ -12,7 +12,7 @@ function App() {
   return (
     <main className="App">
 
-      {location.pathname !== '/' && <NavBar />}
+      {/* {location.pathname !== '/' && <NavBar />} */}
 
       <Route exact path='/' component={Landing} />
       <Route exact path='/home' component={Home} />
