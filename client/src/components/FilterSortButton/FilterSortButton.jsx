@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderByAttack, orderByName, filterType, getPokemonsByType, filterDbApi, getAllPokemons } from '../../redux/actions';
 import style from './FilterSortButton.module.css';
@@ -6,8 +6,8 @@ import style from './FilterSortButton.module.css';
 function FilterSortButton() {
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
-    const [selectedType, setSelectedType] = React.useState('');
-    const [selectedOrigin, setSelectedOrigin] = React.useState('');
+    const [selectedType, setSelectedType] = useState('');
+    const [selectedOrigin, setSelectedOrigin] = useState('');
 
     useEffect(() => {
         dispatch(getPokemonsByType()); // Realiza una solicitud para obtener los tipos de Pokémon
