@@ -3,47 +3,45 @@ import { useDispatch, useSelector } from 'react-redux';
 import { orderByAttack, orderByName, filterType, getPokemonsByType, filterDbApi, getAllPokemons } from '../../redux/actions';
 import style from './FilterSortButton.module.css';
 
-function FilterSortButton({ setPage }) {
+function FilterSortButton() {
     const dispatch = useDispatch();
     const types = useSelector(state => state.types);
     const [selectedType, setSelectedType] = React.useState('');
     const [selectedOrigin, setSelectedOrigin] = React.useState('');
-    const userPokemons = useSelector(state => state.userPokemons);
 
     useEffect(() => {
-        dispatch(getPokemonsByType());
+        dispatch(getPokemonsByType()); // Realiza una solicitud para obtener los tipos de Pokémon
     }, [dispatch]);
 
-    const handleOrderAttackUP = () => {
+    const handleOrderAttackUP = () => { // Ordena los Pokémon por puntos de ataque en orden ascendente
         dispatch(orderByAttack("asc"));
     };
 
-    const handleOrderAttackDOWN = () => {
+    const handleOrderAttackDOWN = () => { // Ordena los Pokémon por puntos de ataque en orden descendente
         dispatch(orderByAttack("desc"));
     };
 
-    const handleOrderNameUP = () => {
+    const handleOrderNameUP = () => {  // Ordena los Pokémon por nombre en orden ascendente (A-Z)
         dispatch(orderByName("asc"));
     };
 
-    const handleOrderNameDOWN = () => {
+    const handleOrderNameDOWN = () => { // Ordena los Pokémon por nombre en orden descendente (Z-A)
         dispatch(orderByName("desc"));
     };
 
-    const handleFilterType = (event) => {
+    const handleFilterType = (event) => { // Filtra los Pokémon por tipo según la opción seleccionada
         const type = event.target.value;
         setSelectedType(type);
         dispatch(filterType(type));
     };
 
-    const handleFilterDbApi = (event) => {
+    const handleFilterDbApi = (event) => { // Filtra los Pokémon según su origen (API o Base de Datos)
         const origin = event.target.value;
-        console.log(origin);
         setSelectedOrigin(origin);
         dispatch(filterDbApi(origin));
     };
 
-    const deleteFilters = () => {
+    const deleteFilters = () => { // Elimina todos los filtros y muestra todos los Pokémon
         setSelectedType('');
         setSelectedOrigin('');
         dispatch(getAllPokemons());
