@@ -12,7 +12,7 @@ import {
     GET_POKEMON_IMG,
 } from './action-types';
 
-export const getPokemons = () => {
+export const getPokemons = () => { // Obtiene una lista de Pokémon y actualiza el estado
     return async function (dispatch) {
         try {
             const response = await axios.get('http://localhost:3001/pokemons');
@@ -25,11 +25,11 @@ export const getPokemons = () => {
     };
 };
 
-export const getAllPokemons = () => {
+export const getAllPokemons = () => { // Devuelve una acción para mostrar todos los Pokémon
     return { type: GET_ALL_POKEMONS };
 };
 
-export const getPokemonDetail = (id) => {
+export const getPokemonDetail = (id) => { // Obtiene detalles de un Pokémon por su ID y actualiza el estado
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
@@ -42,7 +42,7 @@ export const getPokemonDetail = (id) => {
     };
 };
 
-export const getPokemonName = (name) => {
+export const getPokemonName = (name) => { // Busca un Pokémon por nombre y actualiza el estado
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/pokemons?name=${name}`);
@@ -55,11 +55,11 @@ export const getPokemonName = (name) => {
     };
 };
 
-export const getPokemonsByType = () => {
+export const getPokemonsByType = () => { // Obtiene una lista de tipos de Pokémon y actualiza el estado
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/types`);
-            const pokemonTypes = response.data.map((type) => type.name).join(",");
+            const pokemonTypes = response.data.map((type) => type.name).join(","); // Convierte la lista de tipos en un string separado por comas
             dispatch({ type: GET_POKEMON_TYPE, payload: pokemonTypes });
         } catch (error) {
             console.log('Error fetching Pokemon types:', error);
@@ -68,13 +68,12 @@ export const getPokemonsByType = () => {
     };
 };
 
-export const getPokemonImages = () => {
+export const getPokemonImages = () => { // Obtiene imágenes de Pokémon y actualiza el estado
     return async function (dispatch) {
         try {
             const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');
             const pokemonData = response.data.results;
-            // Utiliza "Promise.all" para realizar múltiples solicitudes GET simultáneas para obtener las imágenes de los Pokémon
-            const pokemonImages = await Promise.all(
+            const pokemonImages = await Promise.all( // Utiliza "Promise.all" para realizar múltiples solicitudes GET simultáneas para obtener las imágenes de los Pokémon
                 pokemonData.map(async (result) => {
                     // Realiza una solicitud GET a la URL específica del Pokémon para obtener más detalles, incluyendo la imagen
                     const pokemonResponse = await axios.get(result.url);
@@ -90,18 +89,18 @@ export const getPokemonImages = () => {
     };
 };
 
-export const filterType = (value) => {
+export const filterType = (value) => { // Devuelve una acción para filtrar por tipo de Pokémon
     return { type: FILTER_TYPE, payload: value };
 };
 
-export const filterDbApi = (value) => {
+export const filterDbApi = (value) => { // Devuelve una acción para filtrar por algún criterio específico de la base de datos o API
     return { type: FILTER_DBAPI, payload: value };
 };
 
-export const orderByAttack = (value) => {
+export const orderByAttack = (value) => { // Devuelve una acción para ordenar por puntos de ataque
     return { type: ORDER_BY_ATTACK, payload: value };
 };
 
-export const orderByName = (name) => {
+export const orderByName = (name) => { // Devuelve una acción para ordenar por nombre
     return { type: ORDER_BY_NAME, payload: name };
 };
