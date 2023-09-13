@@ -291,6 +291,7 @@ const Create = () => {
                         {selectedImage && (
                             <img src={selectedImage} alt="Selected Pokemon" className={style.selectedImage} />
                         )}
+                        {errors.image && <span className={style.errorMessage}>{errors.image}</span>}
                     </div>
                 </div>
 
