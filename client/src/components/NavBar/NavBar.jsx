@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { getPokemonName, getPokemons, getAllPokemons } from '../../redux/actions';
+import { getPokemonName, getAllPokemons } from '../../redux/actions';
 
 import SearchBar from '../SearchBar/SearchBar'
 import style from './NavBar.module.css'
@@ -10,15 +9,9 @@ import FilterSortButton from '../FilterSortButton/FilterSortButton';
 const NavBar = ({ setPage }) => {
     const location = useLocation()
     const dispatch = useDispatch()
-    const [name, setName] = useState('')
-
-    // useEffect(() => {
-    //     dispatch(getPokemons());
-    // }, [dispatch]);
 
     const handleSearchSubmit = name => {
-        dispatch(getPokemonName(name));
-        setName('');
+        dispatch(getPokemonName(name)); // Llama a la acción para obtener un pokemon por nombre
     };
 
     const handleLogoClick = () => {
@@ -33,10 +26,10 @@ const NavBar = ({ setPage }) => {
                 <Link className={style.create} to='/create'>CREATE</Link>
                 <Link className={style.out} to='/'>GO OUT</Link>
             </div>
-            {(location.pathname !== '/create' && location.pathname !== '/detail') ?
+            {(location.pathname !== '/create' && location.pathname !== '/detail') ? // Si no está en la ruta de creación o detalle, muestra la barra de búsqueda y el botón de filtrado
                 <>
                     <SearchBar className={style.searchBar} handleSearchSubmit={handleSearchSubmit} />
-                    <FilterSortButton style="display: none;" setPage={setPage} />
+                    <FilterSortButton setPage={setPage} />
                 </>
                 : null
             }
