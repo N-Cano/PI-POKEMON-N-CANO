@@ -1,5 +1,4 @@
 const { Pokemon, Type } = require('../db');
-const axios = require('axios');
 
 const createPoke = async (req, res) => {
     try {
