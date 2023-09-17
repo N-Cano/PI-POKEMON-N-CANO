@@ -54,7 +54,6 @@ const Create = () => {
         type: '',
     });
 
-    const [isSubmitClicked, setIsSubmitClicked] = useState(false);
     const [formValid, setFormValid] = useState(false);
 
     const changeHandler = (event) => { // Maneja los cambios en los campos del formulario
@@ -89,23 +88,32 @@ const Create = () => {
         }));
     };
 
-
     const submitHandler = async (event) => { // Maneja el envío del formulario
         event.preventDefault();
-        setIsSubmitClicked(true);
 
         setErrors(validatePokemon(newPokemon, errors)); // Validación de errores en el formulario
-
+        console.log(newPokemon);
         if (Object.values(errors).some((val) => val !== '')) {
             return;
         }
 
-        // Envía la solicitud para crear un nuevo Pokémon
-        const { name, image, life, attack, defense, speed, height, weight, type } = newPokemon
-        let pokemon = { name: name, image: image, life: life, attack: attack, defense: defense, type: type }
-        if (speed.length) pokemon = { ...pokemon, speed: speed }
-        if (height.length) pokemon = { ...pokemon, height: height }
-        if (weight.length) pokemon = { ...pokemon, weight: weight }
+        const { name, image, life, attack, defense, speed, height, weight, type } = newPokemon;
+
+        let pokemon = {
+            name,
+            image,
+            life,
+            attack,
+            defense,
+            type,
+        }
+
+        if (speed.length) pokemon = { ...pokemon, speed }
+        if (height.length) pokemon = { ...pokemon, height }
+        if (weight.length) pokemon = { ...pokemon, weight }
+
+        if (type.length) pokemon = { ...pokemon, type };
+
         if (name.length && image.length && life.length && attack.length && defense.length && type.length) {
             axios
                 .post('http://localhost:3001/pokemons', pokemon)
@@ -172,21 +180,6 @@ const Create = () => {
             ...pokemon,
             image: event.target.value
         }))
-    };
-
-    const renderImages = () => {
-        if (pokemonImages.length === 0) {
-            return <span>Loading...</span>;
-        }
-        return pokemonImages.map((imageUrl, index) => (
-            <img
-                key={index}
-                src={imageUrl}
-                alt={`Image ${index + 1}`}
-                className={selectedImage === imageUrl ? 'selected' : ''}
-                onClick={() => setSelectedImage(imageUrl)}
-            />
-        ));
     };
 
     useEffect(() => { // Verifica si el formulario es válido en función de los errores

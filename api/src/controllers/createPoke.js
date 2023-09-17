@@ -2,9 +2,9 @@ const { Pokemon, Type } = require('../db');
 
 const createPoke = async (req, res) => {
     try {
-        const { name, image, life, attack, defense, speed, height, weight, types } = req.body; // Destructuro los datos enviados por el body
-
-        const arrayTypes = Array.isArray(types) ? // Verifico si el tipo es un array
+        const { name, image, life, attack, defense, speed, height, weight, type } = req.body; // Destructuro los datos enviados por el body
+        console.log(type);
+        const arrayTypes = Array.isArray(type) ? // Verifico si el tipo es un array
             await Promise.all(type.map(async (type) => {
                 const typeDb = await Type.findOne({
                     where: {
@@ -23,9 +23,9 @@ const createPoke = async (req, res) => {
             speed,
             height,
             weight,
+            type
         });
         await newPokemon.addTypes(arrayTypes); // Agrego los tipos al pokemon creado
-
         return res.status(200).json(newPokemon);
     } catch (error) {
         return res.status(404).json({ message: error.message });

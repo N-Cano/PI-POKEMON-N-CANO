@@ -59,7 +59,7 @@ export const getPokemonsByType = () => { // Obtiene una lista de tipos de Pokém
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/types`);
-            const pokemonTypes = response.data.map((type) => type.name).join(","); // Convierte la lista de tipos en un string separado por comas
+            const pokemonTypes = response.data.map((type) => type.name).join();
             dispatch({ type: GET_POKEMON_TYPE, payload: pokemonTypes });
         } catch (error) {
             console.log('Error fetching Pokemon types:', error);

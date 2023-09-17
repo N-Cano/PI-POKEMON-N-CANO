@@ -39,7 +39,7 @@ const Cards = () => {
                             speed={pokemons.speed}
                             height={pokemons.height}
                             weight={pokemons.weight}
-                            types={pokemons.types}
+                            types={pokemons.types.join(' ')}
                             setPage={setPage}
                         />
                     </div>
@@ -66,7 +66,7 @@ const Cards = () => {
                         speed={pokemon.speed}
                         height={pokemon.height}
                         weight={pokemon.weight}
-                        types={pokemon.types}
+                        types={pokemon.types.join(' ')}
                         setPage={setPage}
                     />
                 ))}
