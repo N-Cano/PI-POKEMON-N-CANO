@@ -1,14 +1,14 @@
-const { Pokemon, Type } = require('../db');
-const validateRequest = require('../requests/createPokemonRequest');
+const validate = require('../requests/createPokemonRequest');
+const createPokemonService = require('../services/createPokemonService');
 
 const createPoke = async (req, res) => {
     try {
         const payload = req.body;
 
-        validateRequest(payload);
+        validate(payload);
 
         const pokemon = await createPokemonService(payload);
-        
+
         return res.status(200).json({
             success: true,
             pokemon

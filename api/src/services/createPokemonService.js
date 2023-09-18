@@ -1,8 +1,10 @@
+const { Pokemon, Type } = require('../db');
+
 const createPokemonService = async (payload) => {
-    const { name, image, life, attack, defense, speed, height, weight } = payload; 
+    const { name, image, life, attack, defense, speed, height, weight, type } = payload;
 
-    const types = await getTypes(payload.types);
-
+    const types = await getTypes(payload.type);
+    console.log(types);
     const newPokemon = await Pokemon.create({
         name,
         image,
@@ -12,22 +14,22 @@ const createPokemonService = async (payload) => {
         speed,
         height,
         weight,
-        types
+        type
     });
-    
-    await newPokemon.addTypes(arrayTypes);
+
+    await newPokemon.addTypes(types);
 }
 
-async function getTypes() {
-    return await Promise.all(type.map(async (type) => {
+async function getTypes(types) {
+    return await Promise.all(types.map(async (type) => {
         const typeDb = await Type.findOne({
             where: {
                 name: type,
             },
         });
-        
+        console.log(typeDb);
         return typeDb;
-    }));
+    }))
 }
 
 module.exports = createPokemonService
