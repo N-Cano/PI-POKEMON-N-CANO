@@ -53,7 +53,7 @@ const Detail = () => {
                                     <p>TYPE:</p>
                                     {pokemonsDetail.types && (
                                         <div>
-                                            {pokemonsDetail.types.split(', ').map((type, index) => ( // Mapea y muestra los tipos del Pokémon
+                                            {pokemonsDetail.types.map((type, index) => ( // Mapea y muestra los tipos del Pokémon
                                                 <p key={index}>{type}</p>
                                             ))}
                                         </div>

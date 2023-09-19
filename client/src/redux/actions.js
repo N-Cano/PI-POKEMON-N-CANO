@@ -33,7 +33,7 @@ export const getPokemonDetail = (id) => { // Obtiene detalles de un Pokémon por
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
-            const pokemonDetail = response.data;
+            const pokemonDetail = response.data.pokemon;
             dispatch({ type: GET_POKEMON_DETAIL, payload: pokemonDetail });
         } catch (error) {
             console.log(`Error fetching Pokemon detail for ID ${id}:`, error);
