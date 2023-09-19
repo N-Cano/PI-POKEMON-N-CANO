@@ -21,33 +21,6 @@ const Cards = () => {
         dispatch(getPokemons());
     }, [dispatch]);
 
-    if (!Array.isArray(pokemons)) { // Si pokemons no es un array, significa que se recibió un único pokemon
-        if (typeof pokemons === 'object' && Object.keys(pokemons).length > 0) {
-            return (
-                <div className={style.pokemonContainer}>
-                    <div className={style.divNav}>
-                        <NavBar setPage={setPage} />
-                    </div>
-                    <div className={style.pokemonSelected}>
-                        <Card
-                            key={pokemons.id}
-                            id={pokemons.id}
-                            name={pokemons.name}
-                            image={pokemons.image}
-                            attack={pokemons.attack}
-                            defense={pokemons.defense}
-                            speed={pokemons.speed}
-                            height={pokemons.height}
-                            weight={pokemons.weight}
-                            types={pokemons.types.join(' ')}
-                            setPage={setPage}
-                        />
-                    </div>
-                </div>
-            );
-        }
-    }
-
     return (
         <main className={style.mainCards}>
             <div className={style.divNav}>

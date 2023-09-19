@@ -43,7 +43,7 @@ const rootReducer = (state = initialState, action) => { // Reducer que maneja la
 
         case GET_POKEMON_NAME:
             // Actualiza el estado con los pokemons filtrados por nombre
-            return { ...state, pokemons: action.payload };
+            return { ...state, filteredPokemons: action.payload };
 
         case GET_POKEMON_DETAIL:
             // Actualiza el estado con los detalles de un pokemon específico
